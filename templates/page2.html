@@ -13,6 +13,35 @@
 <h1>Shruthaja Patali Rao</h1>
 <h2>1002118604</h2>
     </div>
+<div style="margin-top:10%">
+    <form action="/page2.html" method="post" enctype="multipart/form-data">
+        <label >Add User</label>
+        <input type="text" name="uname" placeholder="Enter Name">
+        <input type="text" name="urow" placeholder="Enter row">
+        <input type="text" name="useat" placeholder="Enter SeatLetter">
+        <input type="file" placeholder="Enter Image" name="upic">
+        <input type="text" name="unotes" placeholder="Enter Notes">
+        <input type="submit">
+    </form>
+     <table style="margin-top:3%">
+   {% for i in res %}
+<tr>
+    <td>{{i[0]}}</td>
+    <td>{{i[1]}}</td>
+    <td>{{i[2]}}</td>
+    <td><img src=" {{i[3]}}"></td>
+    <td>{{i[4]}}</td>
+    </tr>
+    {% endfor %}
+        </table>
+</div>
+<div style="margin-top:10%">
+    <form action="/delete" method="post">
+<label> Enter User to Delete</label><input type="text" name="delname">
+        <input type="submit">
+    </form>
+    {{delres}}
+</div>
 <style>
 ul {
   list-style-type: none;
@@ -40,6 +69,9 @@ li a:hover:not(.active) {
 
 .active {
   background-color: #04AA6D;
+}
+table, th, td {
+  border: 1px solid black;
 }
 </style>
 </body>
