@@ -60,4 +60,4 @@ jobs:
         with:
           app-name: 'quiz1shruthaja'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_B202F27201764289881B953512665A78 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_107E301DFE1D45A8A391B149E97259F0 }}
