@@ -15,6 +15,9 @@ app = Flask(__name__)
 def hello_world():
     print(cursor)
     return render_template("index.html")
+@app.route('/page2.html')
+def page2():
+    return render_template("page2.html")
 
 def upload(file,name):
     account_url="DefaultEndpointsProtocol=https;AccountName=shruthaja;AccountKey=FvxC1NCWJQuBHKf77+JJaniZDHYUsBzqjy9H2o2o4INHFJRAXUTl6E3VB+2wXX3SsjFsMy5Vpm/R+ASto6SosQ==;EndpointSuffix=core.windows.net"
