@@ -76,6 +76,41 @@ def delpage():
         cursor.commit()
     return render_template("page2.html",delres="Deleted : "+name)
 
+@app.route('/change2',methods=['GET', 'POST'])
+def changepage():
+    res=""
+    name=""
+    if request.method == "POST":
+        name=request.form['cname']
+        att=request.form['att']
+        attvalue=request.form['attvalue']
+        if(att=="row"):
+            query="UPDATE dbo.q1c SET row=? where name=?"
+        elif (att == "seat"):
+            query = "UPDATE dbo.q1c SET seat=? where name=?"
+        elif(att=="notes"):
+            query = "UPDATE dbo.q1c SET notes=? where name=?"
+        cursor.execute(query,attvalue,name)
+        cursor.commit()
+        print(query,att,attvalue,name)
+    return render_template("page2.html")
+
+@app.route('/changepic',methods=['GET', 'POST'])
+def changepic():
+    if request.method == "POST":
+        file = request.files['picchange']
+        name = request.form['cpicname']
+        url = upload(file, name)
+        query = "update dbo.q1c set pic=? where name=?"
+        cursor = conn.cursor()
+        cursor.execute(query, url, name)
+        conn.commit()
+        # Create a cursor object
+        query = "Select pic from dbo.q1c where name=?"
+        cursor.execute(query, name)
+        row3 = cursor.fetchone()
+    return render_template("page2.html",urlpic=row3[0])
+
 def upload(file,name):
     account_url="DefaultEndpointsProtocol=https;AccountName=shruthaja;AccountKey=FvxC1NCWJQuBHKf77+JJaniZDHYUsBzqjy9H2o2o4INHFJRAXUTl6E3VB+2wXX3SsjFsMy5Vpm/R+ASto6SosQ==;EndpointSuffix=core.windows.net"
     blob_account_client = BlobServiceClient.from_connection_string(account_url)
